@@ -1,5 +1,5 @@
-# Use an ARM-compatible Maven image
-FROM arm64v8/maven:3.9.4-jdk-17 AS build
+# Build stage
+FROM arm64v8/maven:3.6-openjdk-17-slim AS build
 
 WORKDIR /app
 
@@ -15,4 +15,4 @@ WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
 
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
